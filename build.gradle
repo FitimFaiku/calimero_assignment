@@ -1,0 +1,42 @@
+// this gradle buildscript only builds the examples for calimero version >= 2.4
+
+version = '2.4'
+
+allprojects {
+	repositories {
+	    mavenLocal()
+	    jcenter()
+	    mavenCentral()
+	    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+	}
+
+	apply plugin:'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'application'
+
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	compileJava.options*.compilerArgs = [
+		'-Xlint:all',
+		'-Xlint:-options',
+		'-Werror'
+	]
+	
+	dependencies {
+	    compile "com.github.calimero:calimero-core:${version}"
+	    runtime 'org.slf4j:slf4j-simple:1.8.0-beta4'
+	}
+}
+
+subprojects {
+}
+
+// specify an example you want to run
+mainClassName = "DiscoverKnxServers"
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+dependencies {
+    compile "com.github.calimero:calimero-device:${version}"
+    runtime "com.github.calimero:calimero-rxtx:${version}"
+}
