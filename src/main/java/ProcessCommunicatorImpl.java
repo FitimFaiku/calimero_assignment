@@ -3,7 +3,6 @@ import tuwien.auto.calimero.*;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import tuwien.auto.calimero.link.KNXNetworkLink;
 import tuwien.auto.calimero.log.LogService;
-
 import java.util.concurrent.TimeUnit;
 
 public class ProcessCommunicatorImpl extends tuwien.auto.calimero.process.ProcessCommunicatorImpl implements ProcessCommunicator {
@@ -23,14 +22,14 @@ public class ProcessCommunicatorImpl extends tuwien.auto.calimero.process.Proces
     }
 
     @Override
-    public void toogleOnOff(String groupAddress) throws KNXTimeoutException, KNXLinkClosedException, InterruptedException, KNXFormatException, KNXRemoteException {
-        boolean onOrOff = this.readBool(new GroupAddress(groupAddress));
-        for(int i=0; i<10; i++){
+    public void toggleOnOffForGivenSeconds(String readStateGroupAddress, String writeGroupAddress, int seconds) throws KNXTimeoutException, KNXLinkClosedException, InterruptedException, KNXFormatException, KNXRemoteException {
+        boolean onOrOff = this.readBool(new GroupAddress(readStateGroupAddress));
+        for(int i=0; i<seconds; i++){
             onOrOff = !onOrOff;
-            // Uncomment the next line, if you want to write back the same value to the KNX network
-            GroupAddress ga = new GroupAddress(groupAddress);
+            // Here we write to the given GroupAddress to turn on or off
+            GroupAddress ga = new GroupAddress(writeGroupAddress);
             this.write(ga, onOrOff);
-            logger.info("Switched value for groupAddress:" + groupAddress + " to:" + onOrOff);
+            logger.info("Switched value for groupAddress:" + writeGroupAddress + " to:" + onOrOff);
             TimeUnit.SECONDS.sleep(1);
         }
     }

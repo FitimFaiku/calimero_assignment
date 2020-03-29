@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<datapoints>
+  <datapoint stateBased="true" name="Licht Schalten, Kanal A1" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2048</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+  <datapoint stateBased="true" name="Licht Schalten, Kanal A2" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2050</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+  <datapoint stateBased="true" name="Licht Schalten, Kanal A3" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2052</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+  <datapoint stateBased="true" name="Licht Schalten, Kanal B1" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2304</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+  <datapoint stateBased="true" name="Licht Schalten, Kanal B2" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2306</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+  <datapoint stateBased="true" name="Licht Schalten, Treppen" mainNumber="1" dptID="1.001" priority="Low">
+    <knxAddress type="group">2560</knxAddress>
+    <expiration timeout="0"/>
+    <updatingAddresses> </updatingAddresses>
+    <invalidatingAddresses> </invalidatingAddresses>
+  </datapoint>
+</datapoints>

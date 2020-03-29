@@ -33,14 +33,16 @@ public class ProcessListener
     /**
      * The local host used for the connection. Replace the IP address with a local of yours.
      */
-    private static final String localHost = "172.22.1.12";
+    private static final String localHost = "172.22.1.20";
 
 	// Address of your KNXnet/IP server. Replace the IP host or address as necessary.
 	private static final String remoteHost = "172.22.10.71";
 
 	// We will read a boolean from the KNX datapoint with this group address, replace the address as necessary.
 	// Make sure this datapoint exists, otherwise you will get a read timeout!
-	private static final String group = "1/0/5"; // Light state A3 on/off
+	private static final String readGroup = "1/0/5"; // Light state A3 on/off
+
+	private static final String writeGroup = "1/0/4";
 
 	public static void main(final String[] args) {
 
@@ -48,12 +50,14 @@ public class ProcessListener
         final InetSocketAddress localEP = new InetSocketAddress(localHost, 0);
 		// Create our network link, and pass it to a process communicator
         KNXMediumSettings knxMediumSettings = TPSettings.TP1;
-		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(localEP, remote, false, TPSettings.TP1);
+		try (KNXNetworkLink knxLink = KNXNetworkLinkIP.newTunnelingLink(localEP, remote, false, knxMediumSettings);
             ProcessCommunicator pc = new ProcessCommunicatorImpl(knxLink)){
-		    pc.toogleOnOff("1/0/4");
+			pc.toggleOnOffForGivenSeconds(readGroup,writeGroup, 10);
 		}
+
 		catch (KNXException | InterruptedException e) {
 			System.out.println("Error accessing KNX datapoint: " + e.getMessage());
 		}
+
 	}
 }
